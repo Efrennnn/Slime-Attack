@@ -25,15 +25,20 @@ public class AIChase : MonoBehaviour
         if (distance < distanceBetween)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            if (direction.x != 0 || direction.y != 0)
+            {
+                animator.SetFloat("MoveX", direction.x);
+                animator.SetFloat("MoveY", direction.y);
+                animator.SetBool("IsWalking", true);
+            }
+            else
+            {
+                animator.SetBool("IsWalking", false);
+            }
         }
-
-        if(direction.x != 0 || direction.y != 0) {
-        animator.SetFloat("MoveX", direction.x);
-        animator.SetFloat("MoveY", direction.y);
-	
-	animator.SetBool("IsChasing", true);
-	} else {
-	animator.SetBool("IsChasing", false);
-	}
+        else
+        {
+            animator.SetBool("IsWalking", false);
+        }
     }
 }
