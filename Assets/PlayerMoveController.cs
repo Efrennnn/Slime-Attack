@@ -80,10 +80,18 @@ public class PlayerMoveController : MonoBehaviour{
 
     public void SwordAttackArea(){
         LockMovement();
-        if (spriteRenderer.flipX == true){
-            swordAttack.AttackLeft();
+        if (Mathf.Abs(movementInput.x) > Mathf.Abs(movementInput.y)){
+            if (movementInput.x < 0){
+                swordAttack.AttackLeft();
+            } else {
+                swordAttack.AttackRight();
+            }
         } else {
-            swordAttack.AttackRight();
+            if (movementInput.y < 0){
+                swordAttack.AttackDown();
+            } else {
+                swordAttack.AttackUp();
+            }
         }
     }
 
