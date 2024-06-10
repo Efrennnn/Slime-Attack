@@ -7,13 +7,9 @@ public class SwordAttackArea : MonoBehaviour
     public float damage = 3;
     public Collider2D swordCollider;
     private Vector2 rightAttackOffset;
-    private Vector2 upAttackOffset;
-    private Vector2 downAttackOffset;
 
     private void Start(){
         rightAttackOffset = transform.localPosition;
-        upAttackOffset = new Vector2(0, rightAttackOffset.y);
-        downAttackOffset = new Vector2(0, -rightAttackOffset.y);
     }
 
     public void AttackRight(){
@@ -30,13 +26,13 @@ public class SwordAttackArea : MonoBehaviour
 
     public void AttackUp(){
         swordCollider.enabled = true;
-        transform.localPosition = upAttackOffset;
+        transform.localPosition = new Vector3(rightAttackOffset.x, Mathf.Abs(rightAttackOffset.y));
         Debug.Log("AttackUp triggered");
     }
 
     public void AttackDown(){
         swordCollider.enabled = true;
-        transform.localPosition = downAttackOffset;
+        transform.localPosition = new Vector3(rightAttackOffset.x, -Mathf.Abs(rightAttackOffset.y));
         Debug.Log("AttackDown triggered");
     }
 
@@ -44,11 +40,10 @@ public class SwordAttackArea : MonoBehaviour
         swordCollider.enabled = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
+    private void OnTriggerEnter2D(Collider2D other){
         Debug.Log("SwordAttackArea OnTriggerEnter2D triggered");
 
-        if (other.CompareTag("Enemy")){
+        if (other.CompareTag("Enemy")) {
             Enemy enemy = other.GetComponent<Enemy>();
 
             if (enemy != null){
