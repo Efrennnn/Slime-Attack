@@ -10,7 +10,7 @@ public class PlayerMoveController : MonoBehaviour{
     public SwordAttackArea swordAttack;
 
     private Vector2 movementInput;
-    private Vector2 lastMovementDirection = Vector2.down; // Default to down or any initial direction
+    private Vector2 lastMovementDirection = Vector2.down; // default saya taro dibawah
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
     private Animator animator;

@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6765ed349bafa54a9d62e9fe1259a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 1
   swordCollider: {fileID: 1766150051840337612}
 --- !u!1 &4361190864182873749
 GameObject:
@@ -224,8 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fa8cd55ea9f65746b765084de4d8118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  collisionOffset: 0.1
+  moveSpeed: 8
+  collisionOffset: 0
   movementFilter:
     useTriggers: 0
     useLayerMask: 0

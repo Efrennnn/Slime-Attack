@@ -18,10 +18,13 @@ public class Enemy : MonoBehaviour
 
     public float Health{
         set {
+            if(value < health) {
+                animator.SetTrigger("Hit");    
+            }
+
             health = value;
 
-            if (health <= 0)
-            {
+            if (health <= 0){
                 Defeated();
             }
         }
