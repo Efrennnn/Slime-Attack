@@ -172,6 +172,7 @@ MonoBehaviour:
   environmentLayer:
     serializedVersion: 2
     m_Bits: 256
+  knockbackForce: 100
 --- !u!95 &8571958922598494657
 Animator:
   serializedVersion: 5

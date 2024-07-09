@@ -7,51 +7,65 @@ public class Enemy : MonoBehaviour
     public float speed = 2f;
     public float detectionRange = 5f;
     public float health = 1f;
-    public float separationDistance = 1f; 
-    public LayerMask slimeLayer; // Layering untuk Slime
-    public LayerMask environmentLayer; // Layering untuk Collision di Environment
-
-    // kedua diatas digunakan untuk mengatasi error dimana slime mengabaikan Collision di environment
+    public float separationDistance = 1f;
+    public LayerMask slimeLayer; // Layer for Slime
+    public LayerMask environmentLayer; // Layer for environment collisions
+    public float knockbackForce = 5f; // Force of the knockback
 
     private GameObject player;
     private Animator animator;
+    private Rigidbody2D rb;
 
-    public float Health{
-        set {
-            if(value < health) {
-                animator.SetTrigger("Hit");    
+    public float Health
+    {
+        set
+        {
+            if (value < health)
+            {
+                animator.SetTrigger("Hit");
+                Knockback(); // Apply knockback when hit
             }
 
             health = value;
 
-            if (health <= 0){
+            if (health <= 0)
+            {
                 Defeated();
             }
         }
 
-        get {
+        get
+        {
             return health;
         }
     }
 
-    void Start() {
+    void Start()
+    {
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void Update() {
-        if (health > 0) {
-            if (player != null) {
+    void Update()
+    {
+        if (health > 0)
+        {
+            if (player != null)
+            {
                 float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
 
-                if (distanceToPlayer < detectionRange) {
+                if (distanceToPlayer < detectionRange)
+                {
                     Vector2 direction = (player.transform.position - transform.position).normalized;
                     Vector2 newPosition = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
 
                     Collider2D[] slimeColliders = Physics2D.OverlapCircleAll(transform.position, separationDistance, slimeLayer);
 
-                    foreach (Collider2D collider in slimeColliders) {
-                        if (collider.gameObject != gameObject) {
+                    foreach (Collider2D collider in slimeColliders)
+                    {
+                        if (collider.gameObject != gameObject)
+                        {
                             Vector2 separationDirection = (transform.position - collider.transform.position).normalized;
                             newPosition += separationDirection * Time.deltaTime;
                         }
@@ -68,30 +82,45 @@ public class Enemy : MonoBehaviour
                     animator.SetFloat("MoveX", direction.x);
                     animator.SetFloat("MoveY", direction.y);
 
-                    // Flip Sprite apabila direction x < 0, Sprite dari GameObject akan di flip
+                    // Flip Sprite if direction x < 0, flip the GameObject's sprite
                     FlipSprite(direction.x < 0);
-                } else {
+                }
+                else
+                {
                     animator.SetBool("IsMoving", false);
                 }
             }
         }
     }
 
-    void FlipSprite(bool shouldFlip) {
+    void FlipSprite(bool shouldFlip)
+    {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.flipX = shouldFlip;
     }
 
-    public void Defeated() {
+    public void Defeated()
+    {
         animator.SetBool("IsMoving", false);
         animator.SetTrigger("Defeated");
     }
 
-    public void RemoveEnemy() {
+    public void RemoveEnemy()
+    {
         Destroy(gameObject);
     }
 
-    private void OnDrawGizmosSelected() {
+    private void Knockback()
+    {
+        if (player != null)
+        {
+            Vector2 knockbackDirection = (transform.position - player.transform.position).normalized;
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, separationDistance);
     }
