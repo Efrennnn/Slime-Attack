@@ -8,9 +8,13 @@ Slime Attack is a TopDown RPG game about killing slime, u have the duty of an ad
 - Sound BGM: Audacity
 
 ## 🕹️ Game controls
-- Movement: W, A, S, D.
-- Attack: Left Mouse Button
-- Pause: ESC
+The following controls are bound in-game, for gameplay and testing.
+
+| Key Binding       | Function          |
+| ----------------- | ----------------- |
+| W,A,S,D           | Standard movement |
+| Left Mouse Button | Attack            |
+| ESC               | Pause             |
 
 ## ▶️ Future Improvements
 - Mob Drops
