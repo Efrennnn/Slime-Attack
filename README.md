@@ -16,6 +16,10 @@ The following controls are bound in-game, for gameplay and testing.
 | Left Mouse Button | Attack            |
 | ESC               | Pause             |
 
+## 🕹️ Game Assets
+- All of the asset in the game is from "Mystic Woods" Created by Game Endeavor, Here i provide the link to his itch.io: <br>
+  Link : https://game-endeavor.itch.io/mystic-woods
+
 ## ▶️ Future Improvements
 - Mob Drops
 - Upgrades
