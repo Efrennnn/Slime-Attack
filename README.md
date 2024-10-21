@@ -2,22 +2,22 @@
 ## Description
 Slime Attack is a TopDown RPG game about killing slime, u have the duty of an adventurer to kill the slimes in the area.
 
-## Technologies Used
+## 📋 Technologies Used
 - Engine: Unity
 - Programming Language: C#
 - Sound BGM: Audacity
 
-## How to Play
+## 🕹️ Game controls
 - Movement: W, A, S, D.
 - Attack: Left Mouse Button
 - Pause: ESC
 
-Future Improvements
+## ▶️ Future Improvements
 - Mob Drops
 - Upgrades
 - New Maps
 
-## Contributions
+## 🔥 Contributions
 - Efren Christofer~~
 
 
